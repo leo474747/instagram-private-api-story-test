@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { IgApiClient } from '../src';
 import { readFile } from 'fs';
 
@@ -7,6 +8,7 @@ async function main() {
   const username = process.env.IG_USERNAME;
   const password = process.env.IG_PASSWORD;
   const proxy = process.env.IG_PROXY;
+  const storyLink = process.env.STORY_LINK || 'https://example.com';
 
   if (!username || !password) {
     throw new Error('IG_USERNAME and IG_PASSWORD are required');
@@ -21,7 +23,7 @@ async function main() {
 
   const result = await ig.publish.story({
     file,
-    link: process.env.STORY_LINK || 'https://example.com',
+    link: storyLink,
   });
 
   console.log('Story publish result:', result);
