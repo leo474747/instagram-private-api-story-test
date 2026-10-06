@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { IgApiClient } from '../src';
-import { readFile } from 'fs';
+import { readFileSync } from 'fs';
 
 const ig = new IgApiClient();
 
@@ -19,7 +19,7 @@ async function main() {
 
   await ig.account.login(username, password);
 
-  const file = readFile('./story.jpg');
+  const file = readFileSync('./story.jpg');
 
   const result = await ig.publish.story({
     file,
